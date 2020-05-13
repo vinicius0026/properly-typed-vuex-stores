@@ -11,13 +11,15 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { mapMutations } from "vuex"
+import * as authStore from "@/store/modules/auth"
 export default Vue.extend({
   methods: {
     login() {
-      const user = "definitely not a user"
+      const user = {
+        name: "Fake User",
+      }
 
-      this.$store.commit("setUser", user)
+      authStore.mutations.setUser(user)
     },
   },
 })

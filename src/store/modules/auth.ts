@@ -1,24 +1,23 @@
-// state
+import { storeBuilder, RootState } from "@/store/RootState"
 
 interface User {
   name: string
 }
 
-interface AuthState {
-  authUser: User | null
+// state
+export class AuthState {
+  authUser: User | null = null
 }
 
-const state: AuthState = {
-  authUser: null
-}
+const b = storeBuilder.module<AuthState>("auth", new AuthState())
 
 // getters
-function authUser(state: AuthState) {
-  return state.authUser
-}
+const authUser = b.read((state) => state.authUser, "authUser")
 
-const getters = {
-  authUser,
+export const getters = {
+  get authUser() {
+    return authUser()
+  },
 }
 
 // mutations
@@ -26,16 +25,6 @@ function setUser(state: AuthState, user: User) {
   state.authUser = user
 }
 
-const mutations = {
-  setUser,
-}
-
-// actions
-const actions = {}
-
-export default {
-  state,
-  getters,
-  mutations,
-  actions,
+export const mutations = {
+  setUser: b.commit(setUser),
 }
