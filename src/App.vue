@@ -2,11 +2,26 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <a href="#" @click="login">Login</a>
     </div>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue"
+import { mapMutations } from "vuex"
+export default Vue.extend({
+  methods: {
+    login() {
+      const user = "definitely not a user"
+
+      this.$store.commit("setUser", user)
+    },
+  },
+})
+</script>
 
 <style lang="scss">
 #app {
