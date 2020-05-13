@@ -13,6 +13,11 @@
 import Vue from "vue"
 import * as authStore from "@/store/modules/auth"
 export default Vue.extend({
+  computed: {
+    userName() {
+      return authStore.getters.authUser?.name
+    },
+  },
   methods: {
     login() {
       const user = {
