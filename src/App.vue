@@ -19,12 +19,14 @@ export default Vue.extend({
     },
   },
   methods: {
-    login() {
-      const user = {
-        name: "Fake User",
+    async login() {
+      const username = "user"
+      const password = "secret"
+      try {
+        await authStore.actions.login({ username, password })
+      } catch (err) {
+        console.error(err)
       }
-
-      authStore.mutations.setUser(user)
     },
   },
 })
